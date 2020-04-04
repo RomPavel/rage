@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My first Vue app</title>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="toolbar">
+            <button v-on:click="movePlayer">Переместить</button>
+            <button v-on:click="closeBrowser">Закрыть</button>
+        </div>
+        <div v-if="showCoordinatesForm" class="form">
+            <input v-model="coordinates" placeholder="Координаты">
+        </div>
+
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                showCoordinatesForm: false,
+                coordinates: '100,100,100'
+            },
+            methods: {
+                closeBrowser: function () {
+                    mp.trigger('closeBrowser');
+                },
+                movePlayer: function () {
+                    if (!this.showCoordinatesForm) {
+                        this.showCoordinatesForm = true;
+                        return;
+                    }
+                    const [x, y, z] = this.parseCoordinates();
+                    if (x && y && z) {
+                        mp.trigger('movingPlayer', x, y, z);
+                    }
+                },
+                parseCoordinates() {
+                    const coordinatesStrings = this.coordinates.replace(/\s/g, "").split(',')
+                    return coordinatesStrings.map(str => +str);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
