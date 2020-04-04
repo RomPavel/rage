@@ -1,4 +1,4 @@
-const { movePlayerCustomEventHandler, consoleLogHandler } = require('./handlers');
+const { movePlayerCustomEventHandler, consoleLogHandler } = require('./custom.handlers');
 
 mp.events.add('movingPlayer', movePlayerCustomEventHandler);
 
