@@ -4,7 +4,7 @@ const MOVE_PLAYER_BTN_LABEL = {
 };
 const INITIAL_COORDINATES_PLACEHOLDER = '100,100,100';
 
-const coordsRegex = new RegExp(/^(\s*[0-9]{1,3}\s*,){2}(\s*[0-9]{1,3}\s*?)$/);
+const coordsRegex = new RegExp(/^(\s*-?[0-9]{1,3}\s*,){2}(\s*-?[0-9]{1,3}\s*?)$/);
 
 var app = new Vue({
     el: '#app',
