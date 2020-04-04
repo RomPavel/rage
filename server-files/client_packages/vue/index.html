@@ -12,10 +12,10 @@
     <div id="app">
         <div class="toolbar">
             <button tabindex="0" v-on:click="movePlayer" class="btn_blue">{{movePlayerBtnLabel}}</button>
-            <button tabindex="2" v-on:click="closeBrowser" class="btn_red">Закрыть</button>
+            <button tabindex="1" v-on:click="closeBrowser" class="btn_red">Закрыть</button>
         </div>
         <div v-if="showCoordinatesForm" class="form">
-            <input tabindex="1" v-model="coordinates" placeholder="Координаты" v-on:keyup.enter="movePlayer">
+            <input tabindex="0" v-model="coordinates" placeholder="Координаты" v-on:keyup.enter="movePlayer">
             <div v-if="formError" class="form_error">
                 <p>{{formError}}</p>
             </div>
