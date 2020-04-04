@@ -15,25 +15,3 @@ mp.events.add('render', () => {
         });
     }
 });
-
-mp.events.add('testClientEvent', (str, ping) => {
-    const player = mp.players.local;
-    const worldCoords = player.getBoneCoords(0, 0, 0, 0);
-
-    mp.labels.new(`${str}: ${ping}`, worldCoords,
-        {
-            dimension: player.dimension
-        });
-});
-
-mp.events.add('closeBrowser', () => {
-    mp.gui.chat.push(`123`);
-    const browser = mp.browsers.at(0);
-    if (browser) {
-        browser.destroy();
-    }
-})
-
-mp.events.add('movingPlayer', (...args) => {
-    mp.events.callRemote('movingPlayer', ...args);
-})

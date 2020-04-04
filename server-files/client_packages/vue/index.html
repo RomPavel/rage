@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>My first Vue app</title>
+    <title>Rage</title>
     <meta charset="utf-8">
     <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet" href="styles.css">
@@ -11,44 +11,18 @@
 <body>
     <div id="app">
         <div class="toolbar">
-            <button v-on:click="movePlayer">Переместить</button>
-            <button v-on:click="closeBrowser">Закрыть</button>
+            <button tabindex="0" v-on:click="movePlayer" class="btn_blue">{{movePlayerBtnLabel}}</button>
+            <button tabindex="2" v-on:click="closeBrowser" class="btn_red">Закрыть</button>
         </div>
         <div v-if="showCoordinatesForm" class="form">
-            <input v-model="coordinates" placeholder="Координаты">
+            <input tabindex="1" v-model="coordinates" placeholder="Координаты" v-on:keyup.enter="movePlayer">
+            <div v-if="formError" class="form_error">
+                <p>{{formError}}</p>
+            </div>
         </div>
-
-
     </div>
 
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                showCoordinatesForm: false,
-                coordinates: '100,100,100'
-            },
-            methods: {
-                closeBrowser: function () {
-                    mp.trigger('closeBrowser');
-                },
-                movePlayer: function () {
-                    if (!this.showCoordinatesForm) {
-                        this.showCoordinatesForm = true;
-                        return;
-                    }
-                    const [x, y, z] = this.parseCoordinates();
-                    if (x && y && z) {
-                        mp.trigger('movingPlayer', x, y, z);
-                    }
-                },
-                parseCoordinates() {
-                    const coordinatesStrings = this.coordinates.replace(/\s/g, "").split(',')
-                    return coordinatesStrings.map(str => +str);
-                }
-            }
-        })
-    </script>
+    <script src="./index.js"></script>
 </body>
 
 </html>

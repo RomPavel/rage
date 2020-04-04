@@ -1,4 +1,6 @@
 require('./commands');
-require('./events.js');
+require('./events/browser');
+require('./events/custom');
+require('./events/graphics');
 
 mp.browsers.new("package://vue/index.html");

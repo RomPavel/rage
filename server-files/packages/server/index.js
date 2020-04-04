@@ -1,6 +1,5 @@
-//init Commands file
 require('./commands');
-require('./events.js');
+require('./events');
 
-const { createInitialCar } = require('./vehicle/index');
+const { createInitialCar } = require('./utils/vehicle.utils');
 createInitialCar();

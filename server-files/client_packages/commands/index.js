@@ -1,4 +1,10 @@
-const changeViewModeHash = '0x5A4F9EDF1673F704';
+const changeViewModeFunctionHash = '0x5A4F9EDF1673F704';
+
+const CUSTOM_COMMANDS = {
+    testFirstNative: 'testFirstNative',
+    testSecondNative: 'testSecondNative',
+    testClientCommand: 'testClientCommand'
+};
 
 mp.events.add("playerCommand", (command) => {
     const args = command.split(/[ ]+/);
@@ -8,15 +14,15 @@ mp.events.add("playerCommand", (command) => {
 
     mp.gui.chat.push(`You enter command: "${commandName}"`);
     switch (commandName) {
-        case 'testFirstNative': {
-            mp.game.invoke(changeViewModeHash, 4);
+        case CUSTOM_COMMANDS.testFirstNative: {
+            mp.game.invoke(changeViewModeFunctionHash, 4);
             break;
         }
-        case 'testSecondNative': {
-            mp.game.invoke(changeViewModeHash, 0);
+        case CUSTOM_COMMANDS.testSecondNative: {
+            mp.game.invoke(changeViewModeFunctionHash, 0);
             break;
         }
-        case 'testClientCommand': {
+        case CUSTOM_COMMANDS.testClientCommand: {
             const today = new Date();
 
             mp.gui.chat.push(`Curent date: ${today.toLocaleDateString("en-US")}`);
@@ -25,5 +31,4 @@ mp.events.add("playerCommand", (command) => {
             break;
         }
     }
-
 });
